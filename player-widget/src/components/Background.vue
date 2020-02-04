@@ -1,0 +1,26 @@
+<template>
+  <div class="background" />
+</template>
+
+<script>
+export default {
+
+    name: 'Background'
+
+}
+</script>
+
+<style lang="scss" scoped>
+
+.background {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../assets/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+</style>
