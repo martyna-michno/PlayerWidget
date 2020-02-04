@@ -2,6 +2,7 @@
   <div class="main">
     <div class="music-panel">
       <div class="layer" />
+      <font-awesome-icon icon="user-secret" />
       <div class="shadow-top"></div>
       <div class="shadow-bottom"></div>
     </div>
