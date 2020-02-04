@@ -168,7 +168,7 @@ $purple-details: #60558f;
   height: 65px;
   cursor: pointer;
   z-index: 5;
-  color: #8d91ca;
+  color: #85889f
 }
 
 .volume-line {
