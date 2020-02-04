@@ -14,10 +14,14 @@
           <font-awesome-icon :icon="['fas', 'redo-alt']" />
         </div>
       </div>
-      <div class="menu">
+      <div class="menu" @click="changeComponent">
         <font-awesome-icon :icon="['fas', 'bars']" />
       </div>
       <div class="shadow-bottom"></div>
+      <div class="song-info">
+        <p class="first">{{song.artist}}</p>
+        <p class="second">{{song.title}}</p>
+      </div>
     </div>
     <div class="volume-line">
       <div class="volume">
@@ -32,8 +36,12 @@
         <font-awesome-icon icon="step-backward" />
       </div>
       <div class="music" @click="playing=!playing">
-        <span v-if="playing"><font-awesome-icon icon='pause' /></span>
-        <span v-else><font-awesome-icon icon='play' /></span>
+        <span v-if="playing">
+          <font-awesome-icon icon="pause" />
+        </span>
+        <span v-else>
+          <font-awesome-icon icon="play" />
+        </span>
       </div>
       <div class="switch forward">
         <font-awesome-icon icon="step-forward" />
@@ -46,18 +54,20 @@
 </template>
 
 <script>
+import list from "@/data.js";
 export default {
   name: "Main",
   data() {
     return {
-      playing: true
+      playing: true,
+      songs: list,
+      song: list[0]
     };
   },
   methods: {
-    hello: function() {
-      console.log('hello')
+    changeComponent: function() {
+      this.$emit("changeComponent", "songs-list");
     }
-
   }
 };
 </script>
@@ -118,7 +128,7 @@ export default {
   align-items: center;
   height: 65px;
   position: relative;
-  z-index: 100;
+  z-index: 10;
 }
 
 .icon {
@@ -131,6 +141,8 @@ export default {
   top: 26px;
   right: 20px;
   height: 65px;
+  cursor: pointer;
+  z-index: 11;
 }
 
 .volume-line {
@@ -216,5 +228,26 @@ export default {
   border: 2px solid #3c355a;
   margin: 0 18px;
   cursor: pointer;
+}
+
+.song-info {
+  position: absolute;
+  bottom: 15px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.first {
+  font-size: 12px;
+  margin: 0;
+  color: white;
+  font-weight: bold;
+}
+
+.second {
+  font-size: 11px;
+  margin: 0;
+  color: white;
 }
 </style>

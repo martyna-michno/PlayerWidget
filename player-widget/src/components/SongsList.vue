@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="back">
-      <font-awesome-icon icon="reply" />
+      <font-awesome-icon icon="reply" @click="changeComponent"/>
     </div>
     <p class="title">Playlist</p>
     <div v-for="(song, index) in songs" :key="index" class="song-container">
@@ -29,6 +29,11 @@ export default {
     return {
       songs: list
     };
+  },
+   methods: {
+    changeComponent: function() {
+      this.$emit("changeComponent", "main-view");
+    }
   }
 };
 </script>
@@ -55,6 +60,7 @@ export default {
   align-items: center;
   left: 21px;
   top: 20px;
+  cursor:pointer;
 }
 
 .title {
