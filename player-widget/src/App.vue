@@ -1,19 +1,20 @@
 <template>
   <div id="app">
     <Background />
-    <Main />
+    <SongsList />
   </div>
 </template>
 
 <script>
 import Background from "@/components/Background.vue";
-import Main from "@/components/Main.vue";
+// import Main from "@/components/Main.vue";
+import SongsList from "@/components/SongsList.vue";
 
 export default {
   name: "app",
   components: {
     Background,
-    Main
+    SongsList
   }
 };
 </script>
@@ -23,6 +24,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 #app {

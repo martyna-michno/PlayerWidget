@@ -117,6 +117,7 @@ export default {
   margin-left: 133px;
   align-items: center;
   height: 65px;
+  position: relative;
   z-index: 100;
 }
 
