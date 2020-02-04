@@ -26,19 +26,20 @@
     </div>
     <div class="buttons">
       <div class="shuffle">
-        <font-awesome-icon :icon="['fas', 'share-alt']" />
+        <font-awesome-icon icon="share-alt" />
       </div>
       <div class="switch back">
-        <font-awesome-icon :icon="['fas', 'step-backward']" />
+        <font-awesome-icon icon="step-backward" />
       </div>
-      <div class="play">
-        <font-awesome-icon :icon="['fas', 'play']" />
+      <div class="music" @click="playing=!playing">
+        <span v-if="playing"><font-awesome-icon icon='pause' /></span>
+        <span v-else><font-awesome-icon icon='play' /></span>
       </div>
       <div class="switch forward">
-        <font-awesome-icon :icon="['fas', 'step-forward']" />
+        <font-awesome-icon icon="step-forward" />
       </div>
       <div class="fav">
-        <font-awesome-icon :icon="['fas', 'heart']" />
+        <font-awesome-icon icon="heart" />
       </div>
     </div>
   </div>
@@ -46,7 +47,18 @@
 
 <script>
 export default {
-  name: "Main"
+  name: "Main",
+  data() {
+    return {
+      playing: true
+    };
+  },
+  methods: {
+    hello: function() {
+      console.log('hello')
+    }
+
+  }
 };
 </script>
 
@@ -56,7 +68,6 @@ export default {
   height: 480px;
   border-radius: 29px;
   background: lightgray;
-  z-index: -6;
 }
 
 .music-panel {
@@ -66,11 +77,9 @@ export default {
   width: 360px;
   background-image: url("../assets/girls.jpg");
   background-size: cover;
-  z-index: -5;
 }
 
 .layer {
-  z-index: -4;
   border-radius: 27px 27px 0 0;
   background-color: #544282;
   opacity: 0.4;
@@ -90,7 +99,6 @@ export default {
   left: 0;
   background: black;
   opacity: 0.5;
-  z-index: -3;
 }
 
 .shadow-bottom {
@@ -101,7 +109,6 @@ export default {
   left: 0;
   background: black;
   opacity: 0.5;
-  z-index: -3;
 }
 
 .icons {
@@ -123,7 +130,6 @@ export default {
   top: 26px;
   right: 20px;
   height: 65px;
-  z-index: 100;
 }
 
 .volume-line {
@@ -196,7 +202,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.play {
+.music {
   font-size: 20px;
   background: #60558f;
   color: white;
@@ -208,5 +214,6 @@ export default {
   align-items: center;
   border: 2px solid #3c355a;
   margin: 0 18px;
+  cursor: pointer;
 }
 </style>
