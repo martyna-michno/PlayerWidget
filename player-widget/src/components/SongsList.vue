@@ -73,7 +73,7 @@ export default {
   text-align: center;
   color: purple;
   font-size: 20px;
-  margin: 24px 0 0 0;
+  margin: 24px 0 10px 0;
 }
 
 .fav {
@@ -87,6 +87,7 @@ export default {
 .icons {
     display: flex;
     align-items: center;
+    font-size: 10px;
 
 }
 .song-container {
@@ -94,19 +95,19 @@ export default {
     border-bottom: 1px solid #d3d5de;
     width: 280px;
     margin-left: 27px;
-    padding: 25px 0 25px 0;
+    padding: 20px 0 20px 0;
     justify-content: space-between
 }
 
 .first{
     color: #88858f;
     font-size: 12px;
-    margin: 0;
+    margin: 0 0 5px 0;
 }
 .second {
     color: #56466e;
-    font-size: 15px;
-    margin: 7px 0px 0px 0px;
+    font-size: 16px;
+    margin: 0;
     cursor: pointer;
 }
 </style>

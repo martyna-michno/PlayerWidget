@@ -254,8 +254,8 @@ export default {
 }
 .first {
   font-size: 15px;
+  margin-bottom: 0;
   color: white;
-  margin: 0;
   font-weight: bold;
 }
 
