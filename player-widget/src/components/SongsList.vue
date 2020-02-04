@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
-    <div class="back">
-      <font-awesome-icon icon="reply" @click="changeComponent"/>
+    <div class="back-icon">
+      <font-awesome-icon icon="reply" @click="changeComponent" />
     </div>
     <p class="title">Playlist</p>
     <div v-for="(song, index) in songs" :key="index" class="song-container">
-      <div class="song-info">
-        <p class="first" >{{song.time}} | {{song.artist}}</p>
-        <p class="second" @click="showSong(index)">{{song.title}}</p>
+      <div>
+        <p class="date-author-info">{{song.time}} | {{song.artist}}</p>
+        <p class="song-title" @click="showSong(index)">{{song.title}}</p>
       </div>
       <div class="icons">
         <div class="shuffle">
@@ -23,7 +23,7 @@
 
 <script>
 import list from "@/data.js";
-import { bus } from "@/main.js"
+import { bus } from "@/main.js";
 export default {
   name: "SongList",
   data() {
@@ -31,49 +31,55 @@ export default {
       songs: list
     };
   },
-   methods: {
+  methods: {
     changeComponent: function() {
       this.$emit("changeComponent", "main-view");
     },
     showSong: function(index) {
-    this.$emit("changeComponent", "main-view");
-    bus.$emit('changeSong', index)
+      this.$emit("changeComponent", "main-view");
+      bus.$emit("changeSong", index);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+$main-color: #f3f4f8;
+$details-color: #60558f;
+
+@mixin flex($justify: normal, $align: normal) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
 
 .wrapper {
   width: 360px;
   height: 480px;
   border-radius: 29px;
-  background: #f3f4f8;
+  background: $main-color;
   position: relative;
   overflow: scroll;
 }
 
-.back {
+.back-icon {
+  @include flex(center, center);
   position: absolute;
-  color: #60558f;
+  left: 21px;
+  top: 20px;
   background: white;
   height: 36px;
   width: 36px;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 21px;
-  top: 20px;
-  cursor:pointer;
+    color: $details-color;
+  cursor: pointer;
 }
 
 .title {
-  text-align: center;
-  color: purple;
   font-size: 20px;
   margin: 24px 0 10px 0;
+  text-align: center;
+  color: $details-color;
 }
 
 .fav {
@@ -82,32 +88,29 @@ export default {
 }
 
 .shuffle {
-  color: #60558f;
+  color: $details-color;
 }
 .icons {
-    display: flex;
-    align-items: center;
-    font-size: 10px;
-
+  @include flex(normal, center);
+  font-size: 10px;
 }
 .song-container {
-    display: flex;
-    border-bottom: 1px solid #d3d5de;
-    width: 280px;
-    margin-left: 27px;
-    padding: 20px 0 20px 0;
-    justify-content: space-between
+  @include flex(space-between);
+  border-bottom: 1px solid #d3d5de;
+  width: 280px;
+  margin-left: 27px;
+  padding: 20px 0 20px 0;
 }
 
-.first{
-    color: #88858f;
-    font-size: 12px;
-    margin: 0 0 5px 0;
+.date-author-info {
+  font-size: 12px;
+  margin: 0 0 5px 0;
+  color: #88858f;
 }
-.second {
-    color: #56466e;
-    font-size: 16px;
-    margin: 0;
-    cursor: pointer;
+.song-title {
+  font-size: 16px;
+  margin: 0;
+  color: #56466e;
+  cursor: pointer;
 }
 </style>
