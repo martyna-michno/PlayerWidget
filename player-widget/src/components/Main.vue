@@ -2,40 +2,40 @@
   <div class="main">
     <div class="music-panel">
       <div class="layer" />
-      <div class="shadow-top"></div>
+      <div class="shadow-top" />
       <div class="icons">
         <div class="icon">
-          <font-awesome-icon :icon="['fas', 'exchange-alt']" />
+          <font-awesome-icon icon="exchange-alt" />
         </div>
         <div class="icon">
-          <font-awesome-icon :icon="['fas', 'random']" />
+          <font-awesome-icon icon="random" />
         </div>
         <div class="icon">
-          <font-awesome-icon :icon="['fas', 'redo-alt']" />
+          <font-awesome-icon icon="redo-alt" />
         </div>
       </div>
-      <div class="menu" @click="changeComponent">
-        <font-awesome-icon :icon="['fas', 'bars']" />
+      <div class="menu-icon" @click="changeComponent">
+        <font-awesome-icon icon="bars" />
       </div>
-      <div class="shadow-bottom"></div>
-      <div class="song-info">
-        <p class="first">{{songs[ind].artist}}</p>
-        <p class="second">{{songs[ind].title}}</p>
+      <div class="shadow-bottom" />
+      <div class="song-information">
+        <p class="song-artist">{{songs[idx].artist}}</p>
+        <p class="song-title">{{songs[idx].title}}</p>
       </div>
     </div>
     <div class="volume-line">
-      <div class="volume">
-        <font-awesome-icon :icon="['fas', 'volume-up']" />
+      <div class="volume-icon">
+        <font-awesome-icon icon="volume-up" />
       </div>
     </div>
     <div class="buttons">
-      <div class="shuffle">
+      <div class="shuffle-icon">
         <font-awesome-icon icon="share-alt" />
       </div>
-      <div class="switch back">
+      <div class="switch-icon backward-icon">
         <font-awesome-icon icon="step-backward" @click="prev" />
       </div>
-      <div class="music" @click="playing=!playing">
+      <div class="playing-icon" @click="playing=!playing">
         <span v-if="playing">
           <font-awesome-icon icon="pause" />
         </span>
@@ -43,10 +43,10 @@
           <font-awesome-icon icon="play" />
         </span>
       </div>
-      <div class="switch forward" @click="next">
+      <div class="switch-icon forward-icon" @click="next">
         <font-awesome-icon icon="step-forward" />
       </div>
-      <div class="fav">
+      <div class="favourite-icon">
         <font-awesome-icon icon="heart" />
       </div>
     </div>
@@ -63,7 +63,7 @@ export default {
     return {
       playing: true,
       songs: list,
-      ind: 0
+      idx: 0
     };
   },
   methods: {
@@ -71,62 +71,78 @@ export default {
       this.$emit("changeComponent", "songs-list");
     },
     next: function() {
-      this.ind++;
+      this.idx++;
     },
     prev: function() {
-      this.ind--;
+      this.idx--;
     }
   },
   created() {
     bus.$on("changeSong", data => {
-      this.ind = data;
+      this.idx = data;
     });
   }
 };
 </script>
 
 <style lang="scss" scoped>
+$main-color: #eeeff5;
+$main-button: white;
+$red-details: #ed5e74;
+$purple-details: #60558f;
+
+@mixin flex($justify: normal, $align: normal) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+@mixin size($width, $height, $border-radius) {
+  width: $width;
+  height: $height;
+  border-radius: $border-radius;
+}
+
+@mixin position-top-left($position, $top, $left) {
+  position: $position;
+  top: $top;
+  left: $left;
+}
+
+@mixin position-top-right($position, $top, $right) {
+  position: $position;
+  top: $top;
+  right: $right;
+}
+
 .main {
-  width: 360px;
-  height: 480px;
-  border-radius: 29px;
-  background: lightgray;
+  @include size(360px, 480px, 29px);
+  background: $main-color;
 }
 
 .music-panel {
+  @include size(360px, 337px, 27px 27px 0 0);
   position: relative;
-  border-radius: 27px 27px 0 0;
-  height: 337px;
-  width: 360px;
   background-image: url("../assets/girls.jpg");
   background-size: cover;
 }
 
 .layer {
+  @include size(100%, 100%, 0);
+  @include position-top-left(absolute, 0, 0);
   border-radius: 27px 27px 0 0;
   background-color: #544282;
   opacity: 0.4;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .shadow-top {
-  border-radius: 27px 27px 0 0;
-  height: 65px;
-  width: 360px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  @include size(360px, 65px, 27px 27px 0 0);
+  @include position-top-left(absolute, 0, 0);
   background: black;
   opacity: 0.5;
 }
 
 .shadow-bottom {
-  height: 65px;
-  width: 360px;
+  @include size(360px, 65px, 0);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -135,131 +151,102 @@ export default {
 }
 
 .icons {
-  color: white;
-  display: flex;
+  @include flex(normal, center);
   margin-left: 133px;
-  align-items: center;
   height: 65px;
   position: relative;
-  z-index: 10;
+  z-index: 5;
+  color: white;
 }
 
 .icon {
   padding-right: 25px;
 }
 
-.menu {
-  color: #8d91ca;
-  position: absolute;
-  top: 26px;
-  right: 20px;
+.menu-icon {
+  @include position-top-right(absolute, 26px, 20px);
   height: 65px;
   cursor: pointer;
-  z-index: 11;
+  z-index: 5;
+  color: #8d91ca;
 }
 
 .volume-line {
-  height: 7px;
-  width: 260px;
+  @include size(260px, 7px, 0);
   background: white;
-  border-right: 100px solid #ed5e74;
+  border-right: 100px solid $red-details;
   position: relative;
 }
 
-.volume {
-  color: #60558f;
+.volume-icon {
+  @include flex(center, center);
+  @include size(20px, 20px, 50%);
+  @include position-top-right(absolute, -5px, -5px);
+  background: $main-button;
+  color: $purple-details;
   font-size: 10px;
-  background: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: -5px;
-  right: -5px;
 }
 
 .buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 133px;
-  width: 360px;
+  @include flex(center, center);
+  @include size(360px, 133px, 0);
 }
-.switch {
-  background: #60558f;
-  color: white;
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.switch-icon {
+  @include flex(center, center);
+  @include size(36px, 36px, 50%);
+  background: $purple-details;
+  color: $main-button;
   cursor: pointer;
 }
 
-.back {
+.backward-icon {
   margin-left: 44px;
 }
 
-.forward {
+.forward-icon {
   margin-right: 44px;
 }
 
-.fav {
-  color: #ed5e74;
-  background: white;
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.favourite-icon {
+  @include flex(center, center);
+  @include size(36px, 36px, 50%);
+  color: $red-details;
+  background: $main-button;
 }
 
-.shuffle {
-  color: #60558f;
-  background: white;
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.shuffle-icon {
+  @include flex(center, center);
+  @include size(36px, 36px, 50%);
+  color: $purple-details;
+  background: $main-button;
 }
-.music {
+.playing-icon {
+  @include flex(center, center);
+  @include size(52px, 52px, 50%);
+  background: $purple-details;
   font-size: 20px;
-  background: #60558f;
-  color: white;
-  height: 52px;
-  width: 52px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #3c355a;
   margin: 0 18px;
+  color: $main-button;
+  border: 2px solid #3c355a;
   cursor: pointer;
 }
 
-.song-info {
-  position: absolute;
-  bottom: 15px;
+.song-information {
   text-align: center;
   position: absolute;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
 }
-.first {
+.song-artist {
   font-size: 15px;
+  font-weight: bold;
   margin-bottom: 0;
   color: white;
-  font-weight: bold;
 }
 
-.second {
+.song-title {
   font-size: 14px;
   margin: 0;
   color: white;
