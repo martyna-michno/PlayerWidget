@@ -6,8 +6,8 @@
     <p class="title">Playlist</p>
     <div v-for="(song, index) in songs" :key="index" class="song-container">
       <div class="song-info">
-        <p class="first">{{song.time}} | {{song.artist}}</p>
-        <p class="second">{{song.title}}</p>
+        <p class="first" >{{song.time}} | {{song.artist}}</p>
+        <p class="second" @click="showSong(index)">{{song.title}}</p>
       </div>
       <div class="icons">
         <div class="shuffle">
@@ -23,6 +23,7 @@
 
 <script>
 import list from "@/data.js";
+import { bus } from "@/main.js"
 export default {
   name: "SongList",
   data() {
@@ -33,12 +34,17 @@ export default {
    methods: {
     changeComponent: function() {
       this.$emit("changeComponent", "main-view");
+    },
+    showSong: function(index) {
+    this.$emit("changeComponent", "main-view");
+    bus.$emit('changeSong', index)
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+
 .wrapper {
   width: 360px;
   height: 480px;
@@ -65,8 +71,9 @@ export default {
 
 .title {
   text-align: center;
-  margin-top: 31px;
   color: purple;
+  font-size: 20px;
+  margin: 24px 0 0 0;
 }
 
 .fav {
@@ -93,12 +100,13 @@ export default {
 
 .first{
     color: #88858f;
-    font-size: 9px;
-    margin: 0
+    font-size: 12px;
+    margin: 0;
 }
 .second {
     color: #56466e;
-    font-size: 12px;
+    font-size: 15px;
     margin: 7px 0px 0px 0px;
+    cursor: pointer;
 }
 </style>

@@ -19,8 +19,8 @@
       </div>
       <div class="shadow-bottom"></div>
       <div class="song-info">
-        <p class="first">{{song.artist}}</p>
-        <p class="second">{{song.title}}</p>
+        <p class="first">{{songs[ind].artist}}</p>
+        <p class="second">{{songs[ind].title}}</p>
       </div>
     </div>
     <div class="volume-line">
@@ -33,7 +33,7 @@
         <font-awesome-icon icon="share-alt" />
       </div>
       <div class="switch back">
-        <font-awesome-icon icon="step-backward" />
+        <font-awesome-icon icon="step-backward" @click="prev" />
       </div>
       <div class="music" @click="playing=!playing">
         <span v-if="playing">
@@ -43,7 +43,7 @@
           <font-awesome-icon icon="play" />
         </span>
       </div>
-      <div class="switch forward">
+      <div class="switch forward" @click="next">
         <font-awesome-icon icon="step-forward" />
       </div>
       <div class="fav">
@@ -55,19 +55,32 @@
 
 <script>
 import list from "@/data.js";
+import { bus } from "@/main.js";
+
 export default {
   name: "Main",
   data() {
     return {
       playing: true,
       songs: list,
-      song: list[0]
+      ind: 0
     };
   },
   methods: {
     changeComponent: function() {
       this.$emit("changeComponent", "songs-list");
+    },
+    next: function() {
+      this.ind++;
+    },
+    prev: function() {
+      this.ind--;
     }
+  },
+  created() {
+    bus.$on("changeSong", data => {
+      this.ind = data;
+    });
   }
 };
 </script>
@@ -184,6 +197,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .back {
@@ -239,14 +253,14 @@ export default {
   transform: translateX(-50%);
 }
 .first {
-  font-size: 12px;
-  margin: 0;
+  font-size: 15px;
   color: white;
+  margin: 0;
   font-weight: bold;
 }
 
 .second {
-  font-size: 11px;
+  font-size: 14px;
   margin: 0;
   color: white;
 }
