@@ -1,23 +1,23 @@
 <template>
-  <div class="main">
+  <div class="wrapper">
     <div class="music-panel">
-      <div class="layer" />
-      <div class="shadow-top" />
-      <div class="icons">
-        <div class="icon">
+      <div class="pink-layer" />
+      <div class="shadowbox-top" />
+      <div class="small-static-icons">
+        <div class="small-static-icon">
           <font-awesome-icon icon="exchange-alt" />
         </div>
-        <div class="icon">
+        <div class="small-static-icon">
           <font-awesome-icon icon="random" />
         </div>
-        <div class="icon">
+        <div class="small-static-icon">
           <font-awesome-icon icon="redo-alt" />
         </div>
       </div>
       <div class="menu-icon" @click="changeComponent">
         <font-awesome-icon icon="bars" />
       </div>
-      <div class="shadow-bottom" />
+      <div class="shadowbox-bottom" />
       <div class="song-information">
         <p class="song-artist">{{songs[idx].artist}}</p>
         <p class="song-title">{{songs[idx].title}}</p>
@@ -86,10 +86,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 $main-color: #eeeff5;
 $main-button: white;
 $red-details: #ed5e74;
 $purple-details: #60558f;
+$photo-layer: #544282;
 
 @mixin flex($justify: normal, $align: normal) {
   display: flex;
@@ -114,7 +116,7 @@ $purple-details: #60558f;
   right: $right;
 }
 
-.main {
+.wrapper {
   @include size(360px, 480px, 29px);
   background: $main-color;
 }
@@ -126,22 +128,21 @@ $purple-details: #60558f;
   background-size: cover;
 }
 
-.layer {
-  @include size(100%, 100%, 0);
+.pink-layer {
+  @include size(100%, 100%, 27px 27px 0 0);
   @include position-top-left(absolute, 0, 0);
-  border-radius: 27px 27px 0 0;
-  background-color: #544282;
+  background: $photo-layer;
   opacity: 0.4;
 }
 
-.shadow-top {
+.shadowbox-top {
   @include size(360px, 65px, 27px 27px 0 0);
   @include position-top-left(absolute, 0, 0);
   background: black;
   opacity: 0.5;
 }
 
-.shadow-bottom {
+.shadowbox-bottom {
   @include size(360px, 65px, 0);
   position: absolute;
   bottom: 0;
@@ -150,16 +151,15 @@ $purple-details: #60558f;
   opacity: 0.5;
 }
 
-.icons {
+.small-static-icons {
   @include flex(normal, center);
   margin-left: 133px;
   height: 65px;
   position: relative;
-  z-index: 5;
   color: white;
 }
 
-.icon {
+.small-static-icon {
   padding-right: 25px;
 }
 
@@ -167,8 +167,7 @@ $purple-details: #60558f;
   @include position-top-right(absolute, 26px, 20px);
   height: 65px;
   cursor: pointer;
-  z-index: 5;
-  color: #85889f
+  color: #85889f;
 }
 
 .volume-line {
@@ -180,8 +179,8 @@ $purple-details: #60558f;
 
 .volume-icon {
   @include flex(center, center);
-  @include size(20px, 20px, 50%);
-  @include position-top-right(absolute, -5px, -5px);
+  @include size(21px, 21px, 50%);
+  @include position-top-right(absolute, -7px, -5px);
   background: $main-button;
   color: $purple-details;
   font-size: 10px;

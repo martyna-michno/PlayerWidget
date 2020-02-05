@@ -71,7 +71,7 @@ $details-color: #60558f;
   height: 36px;
   width: 36px;
   border-radius: 50%;
-    color: $details-color;
+  color: $details-color;
   cursor: pointer;
 }
 
