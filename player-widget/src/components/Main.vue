@@ -71,10 +71,18 @@ export default {
       this.$emit("changeComponent", "songs-list");
     },
     next: function() {
-      this.idx++;
+      if (this.idx < this.songs.length - 1) {
+        this.idx++;
+      } else {
+        this.idx;
+      }
     },
     prev: function() {
-      this.idx--;
+      if (this.idx == 0) {
+        this.idx;
+      } else {
+        this.idx--;
+      }
     }
   },
   created() {
@@ -86,7 +94,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 $main-color: #eeeff5;
 $main-button: white;
 $red-details: #ed5e74;
