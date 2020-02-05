@@ -113,4 +113,5 @@ $details-color: #60558f;
   color: #56466e;
   cursor: pointer;
 }
+
 </style>

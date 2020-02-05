@@ -15,7 +15,7 @@ import SongsList from "@/components/SongsList.vue";
 export default {
   name: "app",
   components: {
-    background: Background,
+    "background": Background,
     "main-view": Main,
     "songs-list": SongsList
   },
