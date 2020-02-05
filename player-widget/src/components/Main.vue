@@ -168,6 +168,7 @@ $photo-layer: #544282;
 
 .small-static-icon {
   padding-right: 25px;
+  cursor: pointer;
 }
 
 .menu-icon {
@@ -191,6 +192,7 @@ $photo-layer: #544282;
   background: $main-button;
   color: $purple-details;
   font-size: 10px;
+  cursor: pointer;
 }
 
 .buttons {
@@ -219,6 +221,7 @@ $photo-layer: #544282;
   @include size(36px, 36px, 50%);
   color: $red-details;
   background: $main-button;
+  cursor: pointer;
 }
 
 .shuffle-icon {
@@ -226,6 +229,7 @@ $photo-layer: #544282;
   @include size(36px, 36px, 50%);
   color: $purple-details;
   background: $main-button;
+  cursor: pointer;
 }
 .playing-icon {
   @include flex(center, center);

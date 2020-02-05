@@ -3,10 +3,11 @@
     <div class="back-icon">
       <font-awesome-icon icon="reply" @click="changeComponent" />
     </div>
-    <p class="title">Playlist</p>
+    <h2 class="title">Playlist</h2>
     <div v-for="(song, index) in songs" :key="index" class="song-container">
-      <div>
-        <p class="date-author-info">{{song.time}} | {{song.artist}}</p>
+      <div class="songs-information">
+        <span class="date-author-info">{{song.time}} | </span> 
+         <span class="date-author-info">{{song.artist}}</span>
         <p class="song-title" @click="showSong(index)">{{song.title}}</p>
       </div>
       <div class="icons">
@@ -85,15 +86,19 @@ $details-color: #60558f;
 .fav {
   color: #ed5e74;
   margin-left: 12px;
+  cursor: pointer;
 }
 
 .shuffle {
   color: $details-color;
+  cursor: pointer;
 }
+
 .icons {
   @include flex(normal, center);
   font-size: 10px;
 }
+
 .song-container {
   @include flex(space-between);
   border-bottom: 1px solid #d3d5de;
@@ -102,16 +107,22 @@ $details-color: #60558f;
   padding: 20px 0 20px 0;
 }
 
+.song-information {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+}
+
 .date-author-info {
   font-size: 12px;
   margin: 0 0 5px 0;
   color: #88858f;
 }
+
 .song-title {
   font-size: 16px;
   margin: 0;
   color: #56466e;
   cursor: pointer;
 }
-
 </style>
