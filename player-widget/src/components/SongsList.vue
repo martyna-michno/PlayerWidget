@@ -11,7 +11,7 @@
         <p class="song-title" @click="showSong(index)">{{song.title}}</p>
       </div>
       <div class="icons">
-        <div class="shuffle">
+        <div class="share">
           <font-awesome-icon icon="share-alt" />
         </div>
         <div class="fav">
@@ -89,7 +89,7 @@ $details-color: #60558f;
   cursor: pointer;
 }
 
-.shuffle {
+.share {
   color: $details-color;
   cursor: pointer;
 }

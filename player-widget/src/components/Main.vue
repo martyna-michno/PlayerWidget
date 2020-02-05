@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="buttons">
-      <div class="shuffle-icon">
+      <div class="share-icon">
         <font-awesome-icon icon="share-alt" />
       </div>
       <div class="switch-icon backward-icon">
@@ -178,6 +178,10 @@ $photo-layer: #544282;
   color: #85889f;
 }
 
+.menu-icon:hover {
+  color: white;
+}
+
 .volume-line {
   @include size(260px, 7px, 0);
   background: white;
@@ -224,7 +228,7 @@ $photo-layer: #544282;
   cursor: pointer;
 }
 
-.shuffle-icon {
+.share-icon {
   @include flex(center, center);
   @include size(36px, 36px, 50%);
   color: $purple-details;
